@@ -80,11 +80,11 @@ public final class Haptico {
         engine.generate(impact)
     }
     
-    public func generateFeedbackFromPattern(_ pattern: String, delay: Double) {
+    public func generateFeedbackFromPattern(_ pattern: String, delay: TimeInterval) {
         guard let engine = self.engine as? HapticFeedbackNotificationEngine else { return }
         
         if patternEngine == nil {
-            patternEngine = PatternEngine(hapticEngine: engine)
+            patternEngine = PatternEngine(hapticEngine: engine, pauseDuration: delay)
         }
         
         guard let patternEngine = self.patternEngine, patternEngine.isFinished else { return }
